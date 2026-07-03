@@ -89,14 +89,16 @@ export function createEngine(canvas, opts) {
 
     const babyHp = 60 + (lv - 1) * 12;
     const pRaftW = lv >= 5 ? 250 : 220;
-    const pRaft = { x: 145, w: pRaftW, img: "raftP", phase: 0, y: WATER };
+    const cfg = LEVELS[lv];
+    const pRaft = { x: 145, w: pRaftW, img: "raftP", phase: 0, y: WATER,
+                    vx: cfg.playerVx ?? 0, xMin: 75, xMax: 240 };
     rafts.push(pRaft);
     const pOffs = lv >= 5 ? [-65, 0, 65] : [-45, 45];
     for (const o of pOffs) units.push(makeUnit("player", pRaft, o, babyHp));
 
-    const cfg = LEVELS[lv];
     for (const r of cfg.rafts) {
-      const eRaft = { x: r.x, w: r.crew === 3 ? 230 : 200, img: "raftE", phase: Math.random() * 6.28, y: WATER, vx: r.vx ?? 0 };
+      const eRaft = { x: r.x, w: r.crew === 3 ? 230 : 200, img: "raftE",
+                      phase: Math.random() * 6.28, y: WATER, vx: r.vx ?? 0, xMin: 480, xMax: 870 };
       rafts.push(eRaft);
       const offs = r.crew === 1 ? [0] : r.crew === 2 ? [-42, 42] : [-60, 0, 60];
       for (let i = 0; i < offs.length; i++) {
@@ -329,7 +331,7 @@ export function createEngine(canvas, opts) {
       r.y = WATER + 4 + Math.sin(frame * 0.022 + r.phase) * 3;
       if (r.vx) {
         r.x += r.vx;
-        if (r.x < 480 || r.x > 870) r.vx = -r.vx;
+        if (r.x < r.xMin || r.x > r.xMax) r.vx = -r.vx;
       }
     }
     for (const u of units) {

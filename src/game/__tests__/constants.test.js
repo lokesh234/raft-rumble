@@ -15,7 +15,7 @@ describe('canvas dimensions', () => {
 
 describe('physics constants', () => {
   it('gravity is positive', () => expect(GRAV).toBeGreaterThan(0));
-  it('MAX_LEVEL is 7', () => expect(MAX_LEVEL).toBe(7));
+  it('MAX_LEVEL is 10', () => expect(MAX_LEVEL).toBe(10));
 });
 
 describe('cash constants', () => {
@@ -96,6 +96,13 @@ describe('LEVELS', () => {
         expect(raft.crew).toBeGreaterThan(0);
       }
     }
+  });
+
+  it('levels 9 and 10 declare a playerVx for the moving raft', () => {
+    expect(typeof LEVELS[9].playerVx).toBe('number');
+    expect(typeof LEVELS[10].playerVx).toBe('number');
+    expect(LEVELS[9].playerVx).toBeGreaterThan(0);
+    expect(LEVELS[10].playerVx).toBeGreaterThan(0);
   });
 });
 

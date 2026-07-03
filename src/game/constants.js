@@ -2,7 +2,7 @@ export const W = 960;
 export const H = 540;
 export const WATER = 400;   // waterline y
 export const GRAV = 0.35;   // px / frame^2
-export const MAX_LEVEL = 7;
+export const MAX_LEVEL = 10;
 
 export const CASH_PER_HIT = 75;
 export const CASH_PER_KO = 400;
@@ -54,6 +54,9 @@ export const LEVELS = {
   3: { hp: 70,  rafts: [{ x: 640, crew: 2 }, { x: 850, crew: 2 }] },
   4: { hp: 85,  rafts: [{ x: 630, crew: 2 }, { x: 855, crew: 3 }] },
   5: { hp: 100, rafts: [{ x: 600, crew: 3 }, { x: 848, crew: 3 }] },
-  6: { hp: 118, rafts: [{ x: 640, crew: 2, vx: 0.55 }, { x: 855, crew: 3, vx: -0.4 }] },
-  7: { hp: 138, rafts: [{ x: 600, crew: 3, vx: 0.75 }, { x: 845, crew: 3, vx: -0.65 }] },
+  6:  { hp: 118, rafts: [{ x: 640, crew: 2, vx:  0.55 }, { x: 855, crew: 3, vx: -0.4  }] },
+  7:  { hp: 138, rafts: [{ x: 600, crew: 3, vx:  0.75 }, { x: 845, crew: 3, vx: -0.65 }] },
+  8:  { hp: 162, rafts: [{ x: 620, crew: 3, vx:  0.95 }, { x: 855, crew: 3, vx: -0.85 }] },
+  9:  { hp: 192, playerVx:  0.5,  rafts: [{ x: 605, crew: 3, vx:  1.2  }, { x: 848, crew: 3, vx: -1.05 }] },
+  10: { hp: 228, playerVx:  0.75, rafts: [{ x: 590, crew: 3, vx:  1.6  }, { x: 840, crew: 3, vx: -1.4  }] },
 };

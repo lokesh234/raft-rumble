@@ -89,6 +89,26 @@ describe('createEngine', () => {
     engine.destroy();
   });
 
+  it('player raft moves horizontally from level 9 onward', () => {
+    const engine = createEngine(makeCanvas(), makeOpts({ level: 9 }));
+    window.__rr.tick(1); // let unit positions initialise
+    const startX = window.__rr.units().filter(u => u.team === 'player')[0].x;
+    window.__rr.tick(120);
+    const laterX = window.__rr.units().filter(u => u.team === 'player')[0].x;
+    expect(laterX).not.toBe(startX);
+    engine.destroy();
+  });
+
+  it('player raft stays still in levels 1-8', () => {
+    const engine = createEngine(makeCanvas(), makeOpts({ level: 4 }));
+    window.__rr.tick(1);
+    const startX = window.__rr.units().filter(u => u.team === 'player')[0].x;
+    window.__rr.tick(120);
+    const laterX = window.__rr.units().filter(u => u.team === 'player')[0].x;
+    expect(laterX).toBe(startX);
+    engine.destroy();
+  });
+
   it('spawns the correct number of enemy units for level 1', () => {
     const engine = createEngine(makeCanvas(), makeOpts({ level: 1 }));
     const enemies = window.__rr.units().filter(u => u.team === 'enemy');
