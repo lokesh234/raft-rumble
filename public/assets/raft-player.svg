@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="240" height="70" viewBox="0 0 240 70">
+  <!-- inflatable dinghy -->
+  <ellipse cx="120" cy="52" rx="112" ry="14" fill="#c98a1b" opacity="0.35"/>
+  <path d="M12 34 Q12 14 34 14 L206 14 Q228 14 228 34 L228 40 Q228 58 204 58 L36 58 Q12 58 12 40 Z" fill="#f5b21e"/>
+  <path d="M12 34 Q12 14 34 14 L206 14 Q228 14 228 34 L228 36 Q228 22 204 22 L36 22 Q12 22 12 36 Z" fill="#ffd257"/>
+  <!-- tube segments -->
+  <path d="M62 14 L62 58 M120 14 L120 58 M178 14 L178 58" stroke="#d8930f" stroke-width="4" opacity="0.55"/>
+  <!-- rim highlight -->
+  <path d="M20 32 Q20 20 36 20 L204 20 Q220 20 220 32" fill="none" stroke="#fff3c4" stroke-width="4" stroke-linecap="round" opacity="0.8"/>
+  <!-- rope handles -->
+  <path d="M34 38 Q46 48 58 38 M96 38 Q108 48 120 38 M158 38 Q170 48 182 38" fill="none" stroke="#8a5a2b" stroke-width="3" stroke-linecap="round"/>
+  <circle cx="34" cy="38" r="3.4" fill="#c98a1b"/>
+  <circle cx="58" cy="38" r="3.4" fill="#c98a1b"/>
+  <circle cx="96" cy="38" r="3.4" fill="#c98a1b"/>
+  <circle cx="120" cy="38" r="3.4" fill="#c98a1b"/>
+  <circle cx="158" cy="38" r="3.4" fill="#c98a1b"/>
+  <circle cx="182" cy="38" r="3.4" fill="#c98a1b"/>
+</svg>

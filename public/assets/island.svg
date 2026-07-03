@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="220" height="120" viewBox="0 0 220 120">
+  <!-- distant island with palm -->
+  <ellipse cx="110" cy="104" rx="100" ry="18" fill="#e8d5a3"/>
+  <ellipse cx="110" cy="98" rx="80" ry="14" fill="#f2e4bd"/>
+  <!-- palm trunk -->
+  <path d="M104 100 Q112 60 130 40" fill="none" stroke="#8a5a2b" stroke-width="8" stroke-linecap="round"/>
+  <path d="M104 100 Q112 60 130 40" fill="none" stroke="#a87840" stroke-width="4" stroke-linecap="round"/>
+  <!-- fronds -->
+  <g fill="#3d9455">
+    <path d="M130 40 Q160 30 180 44 Q155 44 132 46 Z"/>
+    <path d="M130 40 Q100 26 80 40 Q106 42 129 46 Z"/>
+    <path d="M130 40 Q150 14 175 16 Q152 28 133 44 Z"/>
+    <path d="M130 40 Q112 12 88 14 Q112 26 128 44 Z"/>
+    <path d="M130 40 Q134 10 150 2 Q140 24 133 43 Z"/>
+  </g>
+  <circle cx="126" cy="48" r="5" fill="#7a4d22"/>
+  <circle cx="136" cy="50" r="5" fill="#7a4d22"/>
+</svg>

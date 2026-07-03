@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="100" height="120" viewBox="0 0 100 120">
+  <!-- back arm (throwing arm, raised) -->
+  <ellipse cx="79" cy="56" rx="8.5" ry="17" fill="#f2c29b" transform="rotate(-38 79 56)"/>
+  <circle cx="87" cy="43" r="6.5" fill="#f2c29b"/>
+  <!-- body -->
+  <ellipse cx="50" cy="80" rx="23" ry="25" fill="#f6cfa8"/>
+  <!-- belly button -->
+  <circle cx="50" cy="84" r="1.8" fill="#d9a878"/>
+  <!-- swim trunks -->
+  <path d="M28 90 Q50 102 72 90 L70 110 Q50 119 30 110 Z" fill="#2e6fd8"/>
+  <path d="M28 90 Q50 102 72 90 L71.5 96 Q50 107 28.5 96 Z" fill="#4b8bf0"/>
+  <!-- front arm -->
+  <ellipse cx="24" cy="74" rx="8.5" ry="16" fill="#f6cfa8" transform="rotate(24 24 74)"/>
+  <circle cx="18" cy="87" r="6" fill="#f6cfa8"/>
+  <!-- head -->
+  <circle cx="50" cy="34" r="26" fill="#f6cfa8"/>
+  <!-- hair tuft -->
+  <path d="M45 9 Q49 -1 58 5 Q51 7 51 12 Z" fill="#8a5a2b"/>
+  <path d="M52 10 Q58 3 64 8 Q57 9 56 14 Z" fill="#8a5a2b"/>
+  <!-- ear -->
+  <circle cx="25" cy="36" r="5" fill="#f2c29b"/>
+  <!-- eyes -->
+  <circle cx="44" cy="31" r="4.6" fill="#fff"/>
+  <circle cx="62" cy="31" r="4.6" fill="#fff"/>
+  <circle cx="45.8" cy="31.8" r="2.3" fill="#233240"/>
+  <circle cx="63.8" cy="31.8" r="2.3" fill="#233240"/>
+  <circle cx="46.6" cy="30.8" r="0.8" fill="#fff"/>
+  <circle cx="64.6" cy="30.8" r="0.8" fill="#fff"/>
+  <!-- determined brows -->
+  <path d="M39 24 L50 27" stroke="#8a5a2b" stroke-width="2.6" stroke-linecap="round"/>
+  <path d="M57 27 L68 24" stroke="#8a5a2b" stroke-width="2.6" stroke-linecap="round"/>
+  <!-- grin -->
+  <path d="M44 44 Q53 51 62 43" stroke="#b07a4a" stroke-width="2.6" fill="none" stroke-linecap="round"/>
+  <!-- blush -->
+  <circle cx="35" cy="41" r="4.2" fill="#f5a9a0" opacity="0.55"/>
+  <circle cx="69" cy="40" r="4.2" fill="#f5a9a0" opacity="0.55"/>
+</svg>

@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="80" height="36" viewBox="0 0 80 36">
+  <!-- exhaust flame -->
+  <path d="M12 18 Q2 12 0 18 Q2 24 12 18 Z" fill="#ff9a3d"/>
+  <path d="M12 18 Q6 15 4 18 Q6 21 12 18 Z" fill="#ffd257"/>
+  <!-- tail fins -->
+  <path d="M12 8 L22 12 L22 24 L12 28 L15 18 Z" fill="#c0392b"/>
+  <!-- body -->
+  <rect x="16" y="10" width="42" height="16" rx="8" fill="#d9dde2"/>
+  <rect x="16" y="10" width="42" height="7" rx="3.5" fill="#f2f5f8"/>
+  <!-- band -->
+  <rect x="46" y="10" width="5" height="16" fill="#c0392b"/>
+  <!-- porthole -->
+  <circle cx="34" cy="18" r="4.5" fill="#7ec8f0" stroke="#8a97a3" stroke-width="2"/>
+  <!-- nose cone -->
+  <path d="M56 10 Q74 12 79 18 Q74 24 56 26 Z" fill="#c0392b"/>
+  <path d="M56 10 Q70 12 75 16 Q68 13 56 13 Z" fill="#e05a4c"/>
+</svg>

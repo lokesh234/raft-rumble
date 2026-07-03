@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="240" height="70" viewBox="0 0 240 70">
+  <!-- wooden pirate raft: bundled logs -->
+  <ellipse cx="120" cy="54" rx="112" ry="12" fill="#3a2a1a" opacity="0.35"/>
+  <g stroke="#5a3a1e" stroke-width="2">
+    <rect x="10" y="18" width="220" height="14" rx="7" fill="#8a5a2b"/>
+    <rect x="14" y="30" width="212" height="14" rx="7" fill="#7a4d22"/>
+    <rect x="18" y="42" width="204" height="14" rx="7" fill="#6b421c"/>
+  </g>
+  <!-- log ends -->
+  <circle cx="17" cy="25" r="7" fill="#c99a5b"/><circle cx="17" cy="25" r="3.5" fill="#a87840"/>
+  <circle cx="21" cy="37" r="7" fill="#b8874a"/><circle cx="21" cy="37" r="3.5" fill="#96683a"/>
+  <circle cx="25" cy="49" r="7" fill="#a87840"/><circle cx="25" cy="49" r="3.5" fill="#855c30"/>
+  <!-- wood grain -->
+  <path d="M50 25 L100 25 M130 25 L190 25 M60 37 L120 37 M150 37 L200 37 M70 49 L130 49" stroke="#5a3a1e" stroke-width="2" stroke-linecap="round" opacity="0.6"/>
+  <!-- rope lashings -->
+  <g stroke="#d9c08a" stroke-width="4" fill="none" opacity="0.9">
+    <path d="M56 16 L64 60 M64 16 L56 60"/>
+    <path d="M170 16 L178 60 M178 16 L170 60"/>
+  </g>
+  <!-- tiny flag -->
+  <rect x="116" y="0" width="3" height="22" fill="#4a3a2a"/>
+  <path d="M119 2 L142 7 L119 13 Z" fill="#2b2b2b"/>
+</svg>
