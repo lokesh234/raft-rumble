@@ -198,4 +198,38 @@ describe('createEngine', () => {
       engine.destroy();
     });
   });
+
+  describe('knockback overboard bug regression', () => {
+    it('calls onLevelWin when last enemy dies from overboard knockback during between phase', () => {
+      const onLevelWin = jest.fn();
+      const engine = createEngine(makeCanvas(), makeOpts({ onLevelWin }));
+
+      // Fire wide so the ball misses — moves us from aim to fly to between
+      window.__rr.shoot(-4, -12);
+      window.__rr.tick(200); // ball hits water, state = between
+
+      // Simulate the last enemy dying from knockback overboard (alive=false, no endShot called)
+      window.__rr.silentKill('enemy');
+
+      // Let the between timer expire — this triggers startTurn which must detect the win
+      window.__rr.tick(60);
+
+      expect(onLevelWin).toHaveBeenCalled();
+      engine.destroy();
+    });
+
+    it('calls onGameOver when last player dies from overboard knockback during between phase', () => {
+      const onGameOver = jest.fn();
+      const engine = createEngine(makeCanvas(), makeOpts({ onGameOver }));
+
+      window.__rr.shoot(-4, -12);
+      window.__rr.tick(200);
+
+      window.__rr.silentKill('player');
+      window.__rr.tick(60);
+
+      expect(onGameOver).toHaveBeenCalled();
+      engine.destroy();
+    });
+  });
 });

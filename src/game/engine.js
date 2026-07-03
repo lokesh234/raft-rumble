@@ -106,6 +106,11 @@ export function createEngine(canvas, opts) {
   function aliveUnits(team) { return units.filter(u => u.team === team && u.alive); }
 
   function startTurn(team) {
+    // Units can die from knockback during the between phase, after endShot already ran.
+    // Re-check win/lose here so those overboard deaths are never silently ignored.
+    if (!aliveUnits("enemy").length)  { state = "done"; sfx.win();  onLevelWin?.();  return; }
+    if (!aliveUnits("player").length) { state = "done"; sfx.lose(); onGameOver?.(); return; }
+
     turnTeam = team;
     const crew = aliveUnits(team);
     if (!crew.length) return;
@@ -600,6 +605,8 @@ export function createEngine(canvas, opts) {
     ball: () => (ball ? { x: Math.round(ball.x), y: Math.round(ball.y), id: ball.w.id, team: ball.team } : null),
     shoot: (vx, vy) => { if (state === "aim" && activeUnit && activeUnit.alive) fire(activeUnit, vx, vy); },
     clearLevel: () => { for (const u of aliveUnits("enemy")) { u.alive = false; u.sink = 999; } ball = null; endShot(); },
+    // Kill units without calling endShot — simulates overboard deaths during the between phase.
+    silentKill: (team) => { for (const u of aliveUnits(team)) { u.alive = false; u.sink = 999; } },
     tick: n => { for (let i = 0; i < n && state !== "done"; i++) update(); },
   };
   window.__rr = debug;
