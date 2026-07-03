@@ -1,0 +1,81 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="100" height="120" viewBox="0 0 100 120">
+  <!-- back arm raised to throw -->
+  <ellipse cx="16" cy="56" rx="11" ry="21" fill="#a06028" transform="rotate(30 16 56)"/>
+  <circle cx="6" cy="40" r="8" fill="#a06028"/>
+
+  <!-- captain's coat body -->
+  <ellipse cx="50" cy="88" rx="31" ry="27" fill="#1b2d6e"/>
+  <!-- lapels -->
+  <path d="M33 67 L50 80 L67 67 L63 63 Q50 72 37 63 Z" fill="#0d1840"/>
+  <!-- gold coat buttons -->
+  <circle cx="50" cy="77" r="2.4" fill="#e8b83a"/>
+  <circle cx="50" cy="88" r="2.4" fill="#e8b83a"/>
+  <circle cx="50" cy="99" r="2.4" fill="#e8b83a"/>
+  <!-- left gold epaulette -->
+  <path d="M19 68 Q13 59 19 53 Q33 61 35 68 Z" fill="#e8b83a"/>
+  <line x1="19" y1="64" x2="28" y2="58" stroke="#c89820" stroke-width="1.6"/>
+  <line x1="21" y1="68" x2="30" y2="62" stroke="#c89820" stroke-width="1.6"/>
+  <!-- right gold epaulette -->
+  <path d="M81 68 Q87 59 81 53 Q67 61 65 68 Z" fill="#e8b83a"/>
+  <line x1="81" y1="64" x2="72" y2="58" stroke="#c89820" stroke-width="1.6"/>
+  <line x1="79" y1="68" x2="70" y2="62" stroke="#c89820" stroke-width="1.6"/>
+  <!-- crimson sash -->
+  <path d="M21 107 Q50 118 79 107 L78 113 Q50 120 22 113 Z" fill="#c0392b"/>
+  <!-- dark trousers -->
+  <path d="M25 111 Q50 120 75 111 L74 120 L26 120 Z" fill="#1a1008"/>
+
+  <!-- front arm -->
+  <ellipse cx="82" cy="82" rx="11" ry="18" fill="#a06028" transform="rotate(-20 82 82)"/>
+  <circle cx="89" cy="96" r="7" fill="#a06028"/>
+
+  <!-- head -->
+  <circle cx="50" cy="37" r="27" fill="#a06028"/>
+
+  <!-- full grey beard -->
+  <path d="M23 49 Q50 79 77 49 Q72 70 50 74 Q28 70 23 49 Z" fill="#8a8070"/>
+  <path d="M29 58 Q50 76 71 58 Q66 67 50 70 Q34 67 29 58 Z" fill="#c0b8a8"/>
+
+  <!-- bicorne hat: crown -->
+  <ellipse cx="50" cy="16" rx="21" ry="11" fill="#111"/>
+  <!-- left wing -->
+  <path d="M5 23 Q1 13 7 7 Q21 2 31 17 Q18 15 5 23 Z" fill="#111"/>
+  <!-- right wing -->
+  <path d="M95 23 Q99 13 93 7 Q79 2 69 17 Q82 15 95 23 Z" fill="#111"/>
+  <!-- brim band -->
+  <path d="M5 23 Q50 13 95 23 L94 27 Q50 17 6 27 Z" fill="#1a1a1a"/>
+  <!-- gold brim trim -->
+  <path d="M5 23 Q50 13 95 23" stroke="#e8b83a" stroke-width="2.6" fill="none"/>
+  <!-- gold arc on crown top -->
+  <path d="M31 17 Q50 3 69 17" stroke="#e8b83a" stroke-width="2.2" fill="none"/>
+  <!-- skull-and-crossbones badge -->
+  <circle cx="50" cy="14" r="5" fill="#e8e0d0"/>
+  <circle cx="48.4" cy="12.5" r="1.2" fill="#111"/>
+  <circle cx="51.6" cy="12.5" r="1.2" fill="#111"/>
+  <rect x="47" y="14.5" width="6" height="2.2" rx="0.6" fill="#111"/>
+  <line x1="44" y1="11" x2="56" y2="17" stroke="#111" stroke-width="1.1"/>
+  <line x1="56" y1="11" x2="44" y2="17" stroke="#111" stroke-width="1.1"/>
+
+  <!-- both eyes — cold, calculating stare (no eyepatch) -->
+  <circle cx="37" cy="37" r="6" fill="#fff"/>
+  <circle cx="63" cy="37" r="6" fill="#fff"/>
+  <circle cx="36" cy="37.5" r="3" fill="#0a1805"/>
+  <circle cx="62" cy="37.5" r="3" fill="#0a1805"/>
+  <!-- pupils: sharp glint -->
+  <circle cx="35.4" cy="36.5" r="1.1" fill="#fff" opacity="0.75"/>
+  <circle cx="61.4" cy="36.5" r="1.1" fill="#fff" opacity="0.75"/>
+
+  <!-- heavy furrowed brows (angled inward = angry/focused) -->
+  <path d="M30 29 L48 33" stroke="#1a0c04" stroke-width="3.8" stroke-linecap="round"/>
+  <path d="M52 33 L70 29" stroke="#1a0c04" stroke-width="3.8" stroke-linecap="round"/>
+
+  <!-- grim set jaw -->
+  <path d="M36 55 Q50 51 64 55" stroke="#3a2010" stroke-width="2.8" fill="none" stroke-linecap="round"/>
+
+  <!-- large gold earring with pearl -->
+  <circle cx="23" cy="47" r="4.5" fill="none" stroke="#e8b83a" stroke-width="2.8"/>
+  <circle cx="23" cy="51.5" r="2" fill="#f0e8d0"/>
+
+  <!-- battle scars (earned many fights) -->
+  <path d="M66 33 L70 44 M65 37 L71 36" stroke="#845030" stroke-width="2" stroke-linecap="round"/>
+  <path d="M28 44 L32 38" stroke="#845030" stroke-width="1.5" stroke-linecap="round"/>
+</svg>

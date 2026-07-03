@@ -16,17 +16,18 @@ export const AMMO = {
 
 const _base = import.meta.env.BASE_URL;
 export const ASSET_SOURCES = {
-  player:   `${_base}assets/player.svg`,
-  enemy:    `${_base}assets/enemy.svg`,
-  raftP:    `${_base}assets/raft-player.svg`,
-  raftE:    `${_base}assets/raft-enemy.svg`,
-  ball:     `${_base}assets/ball.svg`,
-  baseball: `${_base}assets/baseball.svg`,
-  grenade:  `${_base}assets/grenade.svg`,
-  rocket:   `${_base}assets/rocket.svg`,
-  cloud:    `${_base}assets/cloud.svg`,
-  sun:      `${_base}assets/sun.svg`,
-  island:   `${_base}assets/island.svg`,
+  player:    `${_base}assets/player.svg`,
+  enemy:     `${_base}assets/enemy.svg`,
+  enemyBoss: `${_base}assets/enemy-boss.svg`,
+  raftP:     `${_base}assets/raft-player.svg`,
+  raftE:     `${_base}assets/raft-enemy.svg`,
+  ball:      `${_base}assets/ball.svg`,
+  baseball:  `${_base}assets/baseball.svg`,
+  grenade:   `${_base}assets/grenade.svg`,
+  rocket:    `${_base}assets/rocket.svg`,
+  cloud:     `${_base}assets/cloud.svg`,
+  sun:       `${_base}assets/sun.svg`,
+  island:    `${_base}assets/island.svg`,
 };
 
 // dmg/kb are multipliers on the tennis ball; aoe > 0 explodes on impact;

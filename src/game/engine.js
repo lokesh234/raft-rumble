@@ -70,12 +70,12 @@ export function createEngine(canvas, opts) {
     return weapon;
   }
 
-  function makeUnit(team, raft, baseOff, hp) {
+  function makeUnit(team, raft, baseOff, hp, isBoss = false) {
     return {
       team, raft, baseOff, off: 0, kbVel: 0,
       hp, maxHp: hp, alive: true, sink: 0,
-      w: 58, h: 70, wobble: Math.random() * 6.28,
-      x: 0, y: 0,
+      w: isBoss ? 68 : 58, h: isBoss ? 82 : 70, wobble: Math.random() * 6.28,
+      x: 0, y: 0, isBoss,
     };
   }
 
@@ -94,7 +94,11 @@ export function createEngine(canvas, opts) {
       const eRaft = { x: r.x, w: r.crew === 3 ? 230 : 200, img: "raftE", phase: Math.random() * 6.28, y: WATER, vx: r.vx ?? 0 };
       rafts.push(eRaft);
       const offs = r.crew === 1 ? [0] : r.crew === 2 ? [-42, 42] : [-60, 0, 60];
-      for (const o of offs) units.push(makeUnit("enemy", eRaft, o, cfg.hp));
+      for (let i = 0; i < offs.length; i++) {
+        const isBoss = lv >= 6 && i === 0; // first crew member is the captain in hard levels
+        const hp = isBoss ? Math.round(cfg.hp * 1.4) : cfg.hp;
+        units.push(makeUnit("enemy", eRaft, offs[i], hp, isBoss));
+      }
     }
     startTurn("player");
   }
@@ -161,13 +165,17 @@ export function createEngine(canvas, opts) {
     if (!targets.length) return;
     const t = targets[Math.floor(Math.random() * targets.length)];
     const m = muzzle(u);
+
+    // Boss captain scans a much finer grid to find a near-perfect shot
+    const degStep = u.isBoss ? 1 : 5;
+    const powStep = u.isBoss ? 0.4 : 1;
     let best = { err: 1e9, vx: -8, vy: -8 };
-    for (let deg = 25; deg <= 80; deg += 5) {
+    for (let deg = 20; deg <= 85; deg += degStep) {
       const a = (deg * Math.PI) / 180;
-      for (let p = 6; p <= 17; p += 1) {
+      for (let p = 5; p <= 18; p += powStep) {
         const vx = -Math.cos(a) * p, vy = -Math.sin(a) * p;
         let x = m.x, y = m.y, cvy = vy, err = 1e9;
-        for (let i = 0; i < 240; i++) {
+        for (let i = 0; i < 260; i++) {
           cvy += GRAV; x += vx; y += cvy;
           const d = Math.hypot(x - t.x, y - (t.y - 10));
           if (d < err) err = d;
@@ -176,8 +184,10 @@ export function createEngine(canvas, opts) {
         if (err < best.err) best = { err, vx, vy };
       }
     }
-    // wobble the perfect shot — pirates get sharper each level
-    const fuzz = Math.max(0.15 - level * 0.025, 0.03);
+
+    // Boss adds almost no random wobble; regular pirates get sharper each level
+    const baseFuzz = Math.max(0.15 - level * 0.025, 0.03);
+    const fuzz = u.isBoss ? baseFuzz * 0.15 : baseFuzz;
     const speed = Math.hypot(best.vx, best.vy);
     const ang = Math.atan2(best.vy, best.vx) + (Math.random() * 2 - 1) * fuzz * 1.4;
     const pow = speed * (1 + (Math.random() * 2 - 1) * fuzz);
@@ -427,7 +437,7 @@ export function createEngine(canvas, opts) {
       cx.rotate(u.team === "player" ? -0.6 : 0.6);
       cx.translate(-u.x, -u.y);
     }
-    const img = u.team === "player" ? IMG.player : IMG.enemy;
+    const img = u.team === "player" ? IMG.player : (u.isBoss ? IMG.enemyBoss : IMG.enemy);
     cx.drawImage(img, u.x - u.w / 2, u.y - u.h / 2, u.w, u.h);
     cx.restore();
 
