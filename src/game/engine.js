@@ -1,4 +1,4 @@
-import { W, H, WATER, GRAV, WEAPONS, LEVELS, ASSET_SOURCES, CASH_PER_HIT, CASH_PER_KO, AMMO } from "./constants.js";
+import { W, H, WATER, GRAV, WEAPONS, ENEMY_WEAPONS, LEVELS, ASSET_SOURCES, CASH_PER_HIT, CASH_PER_KO, AMMO } from "./constants.js";
 import { sfx, initAudio } from "./sound.js";
 
 let imagesPromise = null;
@@ -63,7 +63,11 @@ export function createEngine(canvas, opts) {
   ];
 
   function weaponOf(team) {
-    if (team !== "player") return WEAPONS[0];
+    if (team !== "player") {
+      if (level >= 6) return ENEMY_WEAPONS[2]; // cannonball
+      if (level >= 4) return ENEMY_WEAPONS[1]; // pirate bomb
+      return ENEMY_WEAPONS[0];                 // ball
+    }
     const id = getWeaponId();
     const weapon = WEAPONS.find(w => w.id === id) || WEAPONS[0];
     if (AMMO[id] && (getAmmo?.(id) ?? 0) <= 0) return WEAPONS[0];
@@ -84,10 +88,11 @@ export function createEngine(canvas, opts) {
     shooterIdx = { player: 0, enemy: 0 };
 
     const babyHp = 60 + (lv - 1) * 12;
-    const pRaft = { x: 145, w: 220, img: "raftP", phase: 0, y: WATER };
+    const pRaftW = lv >= 5 ? 250 : 220;
+    const pRaft = { x: 145, w: pRaftW, img: "raftP", phase: 0, y: WATER };
     rafts.push(pRaft);
-    units.push(makeUnit("player", pRaft, -45, babyHp));
-    units.push(makeUnit("player", pRaft, 45, babyHp));
+    const pOffs = lv >= 5 ? [-65, 0, 65] : [-45, 45];
+    for (const o of pOffs) units.push(makeUnit("player", pRaft, o, babyHp));
 
     const cfg = LEVELS[lv];
     for (const r of cfg.rafts) {
@@ -170,6 +175,8 @@ export function createEngine(canvas, opts) {
     if (!targets.length) return;
     const t = targets[Math.floor(Math.random() * targets.length)];
     const m = muzzle(u);
+    const eWeapon = weaponOf("enemy");
+    const eGrav = GRAV * eWeapon.grav; // simulate with the weapon's actual gravity
 
     // Boss captain scans a much finer grid to find a near-perfect shot
     const degStep = u.isBoss ? 1 : 5;
@@ -181,7 +188,7 @@ export function createEngine(canvas, opts) {
         const vx = -Math.cos(a) * p, vy = -Math.sin(a) * p;
         let x = m.x, y = m.y, cvy = vy, err = 1e9;
         for (let i = 0; i < 260; i++) {
-          cvy += GRAV; x += vx; y += cvy;
+          cvy += eGrav; x += vx; y += cvy;
           const d = Math.hypot(x - t.x, y - (t.y - 10));
           if (d < err) err = d;
           if (y > WATER + 14 || x < -60) break;

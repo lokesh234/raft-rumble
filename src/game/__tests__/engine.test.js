@@ -75,10 +75,17 @@ describe('createEngine', () => {
     engine.destroy();
   });
 
-  it('spawns 2 player units on every level', () => {
-    const engine = createEngine(makeCanvas(), makeOpts());
+  it('spawns 2 player units on levels 1-4', () => {
+    const engine = createEngine(makeCanvas(), makeOpts({ level: 1 }));
     const players = window.__rr.units().filter(u => u.team === 'player');
     expect(players).toHaveLength(2);
+    engine.destroy();
+  });
+
+  it('spawns 3 player units from level 5 onward', () => {
+    const engine = createEngine(makeCanvas(), makeOpts({ level: 5 }));
+    const players = window.__rr.units().filter(u => u.team === 'player');
+    expect(players).toHaveLength(3);
     engine.destroy();
   });
 

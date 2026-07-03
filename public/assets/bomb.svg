@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="22" height="24" viewBox="0 0 22 24">
+  <!-- lit fuse -->
+  <path d="M13 7 Q18 3 17 0" stroke="#c89820" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+  <!-- spark at fuse tip -->
+  <circle cx="17" cy="0.5" r="2.8" fill="#ffee44"/>
+  <circle cx="18.5" cy="0" r="1.6" fill="#ff9900" opacity="0.85"/>
+  <!-- body shadow -->
+  <circle cx="11" cy="15.5" r="8.8" fill="#111" opacity="0.4"/>
+  <!-- bomb body -->
+  <circle cx="10.5" cy="14.5" r="8.8" fill="#2a2a2a"/>
+  <!-- shine highlight -->
+  <ellipse cx="7.2" cy="11" rx="2.6" ry="3.2" fill="#666" opacity="0.55"/>
+  <circle cx="6.8" cy="10.5" r="1.1" fill="#999" opacity="0.5"/>
+</svg>

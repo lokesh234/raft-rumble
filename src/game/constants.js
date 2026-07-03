@@ -16,18 +16,20 @@ export const AMMO = {
 
 const _base = import.meta.env.BASE_URL;
 export const ASSET_SOURCES = {
-  player:    `${_base}assets/player.svg`,
-  enemy:     `${_base}assets/enemy.svg`,
-  enemyBoss: `${_base}assets/enemy-boss.svg`,
-  raftP:     `${_base}assets/raft-player.svg`,
-  raftE:     `${_base}assets/raft-enemy.svg`,
-  ball:      `${_base}assets/ball.svg`,
-  baseball:  `${_base}assets/baseball.svg`,
-  grenade:   `${_base}assets/grenade.svg`,
-  rocket:    `${_base}assets/rocket.svg`,
-  cloud:     `${_base}assets/cloud.svg`,
-  sun:       `${_base}assets/sun.svg`,
-  island:    `${_base}assets/island.svg`,
+  player:     `${_base}assets/player.svg`,
+  enemy:      `${_base}assets/enemy.svg`,
+  enemyBoss:  `${_base}assets/enemy-boss.svg`,
+  raftP:      `${_base}assets/raft-player.svg`,
+  raftE:      `${_base}assets/raft-enemy.svg`,
+  ball:       `${_base}assets/ball.svg`,
+  baseball:   `${_base}assets/baseball.svg`,
+  grenade:    `${_base}assets/grenade.svg`,
+  rocket:     `${_base}assets/rocket.svg`,
+  bomb:       `${_base}assets/bomb.svg`,
+  cannonball: `${_base}assets/cannonball.svg`,
+  cloud:      `${_base}assets/cloud.svg`,
+  sun:        `${_base}assets/sun.svg`,
+  island:     `${_base}assets/island.svg`,
 };
 
 // dmg/kb are multipliers on the tennis ball; aoe > 0 explodes on impact;
@@ -37,6 +39,13 @@ export const WEAPONS = [
   { id: "baseball", name: "Baseball",    price: 900,  dmg: 1.6, kb: 1.4, aoe: 0,  grav: 1,    img: "baseball", dw: 18, dh: 18, rot: false, blast: "—",    blurb: "Hits like a slugger." },
   { id: "grenade",  name: "Grenade",     price: 2600, dmg: 2.2, kb: 1.6, aoe: 75, grav: 1,    img: "grenade",  dw: 20, dh: 22, rot: false, blast: "WIDE", blurb: "Splash damage. Literally." },
   { id: "rocket",   name: "Rocket",      price: 6000, dmg: 3.2, kb: 2.2, aoe: 95, grav: 0.55, img: "rocket",   dw: 38, dh: 17, rot: true,  blast: "HUGE", blurb: "Flies flat. Ka-boom." },
+];
+
+// Enemy-only weapon progression — picked by level in weaponOf()
+export const ENEMY_WEAPONS = [
+  { id: "ball",        dmg: 1,   kb: 1,   aoe: 0,  grav: 1,    img: "ball",       dw: 18, dh: 18, rot: false }, // levels 1-3
+  { id: "pirate-bomb", dmg: 2.2, kb: 1.6, aoe: 72, grav: 1,    img: "bomb",       dw: 20, dh: 22, rot: false }, // levels 4-5
+  { id: "cannonball",  dmg: 3.0, kb: 2.0, aoe: 90, grav: 0.75, img: "cannonball", dw: 26, dh: 22, rot: false }, // levels 6-7
 ];
 
 export const LEVELS = {
