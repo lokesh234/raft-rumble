@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { createEngine } from "../game/engine.js";
 import { W, H, MAX_LEVEL, LEVEL_BONUS, WEAPONS } from "../game/constants.js";
-import { addCash, equipWeapon } from "../store/playerSlice.js";
+import { addCash, equipWeapon, useAmmo } from "../store/playerSlice.js";
 import { levelCleared, shotFired, pirateSunk } from "../store/gameSlice.js";
 import Hud from "./Hud.jsx";
 
@@ -18,17 +18,22 @@ export default function GameScreen() {
 
   // the engine reads the equipped weapon live through a ref so we don't
   // rebuild the battle every time the player switches weapons
+  const ammo = useSelector(s => s.player.ammo);
   const equippedRef = useRef(equippedId);
   equippedRef.current = equippedId;
+  const ammoRef = useRef(ammo);
+  ammoRef.current = ammo;
 
   useEffect(() => {
     setOutcome(null);
     const engine = createEngine(canvasRef.current, {
       level,
       getWeaponId: () => equippedRef.current,
+      getAmmo: id => ammoRef.current[id] ?? 0,
       onCash: amount => dispatch(addCash(amount)),
       onShot: () => dispatch(shotFired()),
       onPirateSunk: () => dispatch(pirateSunk()),
+      onUseAmmo: id => dispatch(useAmmo(id)),
       onLevelWin: () => {
         dispatch(addCash(LEVEL_BONUS));
         setOutcome("win");

@@ -144,4 +144,58 @@ describe('createEngine', () => {
     engine.destroy();
     expect(window.__rr).toBeUndefined();
   });
+
+  describe('ammo system', () => {
+    it('uses the ball when grenade is equipped but getAmmo returns 0', () => {
+      const engine = createEngine(makeCanvas(), makeOpts({
+        getWeaponId: jest.fn(() => 'grenade'),
+        getAmmo: jest.fn(() => 0),
+      }));
+      window.__rr.shoot(-10, -8);
+      expect(window.__rr.ball().id).toBe('ball');
+      engine.destroy();
+    });
+
+    it('uses the grenade when getAmmo returns a positive count', () => {
+      const onUseAmmo = jest.fn();
+      const engine = createEngine(makeCanvas(), makeOpts({
+        getWeaponId: jest.fn(() => 'grenade'),
+        getAmmo: jest.fn(() => 3),
+        onUseAmmo,
+      }));
+      window.__rr.shoot(-10, -8);
+      expect(window.__rr.ball().id).toBe('grenade');
+      engine.destroy();
+    });
+
+    it('calls onUseAmmo when an ammo weapon is fired', () => {
+      const onUseAmmo = jest.fn();
+      const engine = createEngine(makeCanvas(), makeOpts({
+        getWeaponId: jest.fn(() => 'grenade'),
+        getAmmo: jest.fn(() => 2),
+        onUseAmmo,
+      }));
+      window.__rr.shoot(-10, -8);
+      expect(onUseAmmo).toHaveBeenCalledWith('grenade');
+      engine.destroy();
+    });
+
+    it('does not call onUseAmmo when firing the ball', () => {
+      const onUseAmmo = jest.fn();
+      const engine = createEngine(makeCanvas(), makeOpts({ onUseAmmo }));
+      window.__rr.shoot(-10, -8);
+      expect(onUseAmmo).not.toHaveBeenCalled();
+      engine.destroy();
+    });
+
+    it('does not call onUseAmmo for the enemy', () => {
+      const onUseAmmo = jest.fn();
+      const engine = createEngine(makeCanvas(), makeOpts({ onUseAmmo }));
+      // advance to enemy turn
+      window.__rr.shoot(-10, -8);
+      window.__rr.tick(300); // let the shot resolve and enemy turn begin
+      expect(onUseAmmo).not.toHaveBeenCalled();
+      engine.destroy();
+    });
+  });
 });

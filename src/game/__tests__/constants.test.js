@@ -1,7 +1,7 @@
 import {
   W, H, WATER, GRAV, MAX_LEVEL,
   CASH_PER_HIT, CASH_PER_KO, LEVEL_BONUS,
-  WEAPONS, LEVELS, ASSET_SOURCES,
+  WEAPONS, LEVELS, ASSET_SOURCES, AMMO,
 } from '../constants.js';
 
 describe('canvas dimensions', () => {
@@ -96,6 +96,27 @@ describe('LEVELS', () => {
         expect(raft.crew).toBeGreaterThan(0);
       }
     }
+  });
+});
+
+describe('AMMO', () => {
+  it('only defines ammo for grenade and rocket', () => {
+    expect(Object.keys(AMMO)).toEqual(['grenade', 'rocket']);
+  });
+
+  it('each entry has initial, refillQty, and refillPrice', () => {
+    for (const cfg of Object.values(AMMO)) {
+      expect(cfg).toHaveProperty('initial');
+      expect(cfg).toHaveProperty('refillQty');
+      expect(cfg).toHaveProperty('refillPrice');
+      expect(cfg.initial).toBeGreaterThan(0);
+      expect(cfg.refillQty).toBeGreaterThan(0);
+      expect(cfg.refillPrice).toBeGreaterThan(0);
+    }
+  });
+
+  it('rocket costs more to refill than grenade', () => {
+    expect(AMMO.rocket.refillPrice).toBeGreaterThan(AMMO.grenade.refillPrice);
   });
 });
 

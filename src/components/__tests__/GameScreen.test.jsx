@@ -21,7 +21,7 @@ jest.mock('../../game/engine.js', () => ({
 function defaultState(level = 1) {
   return {
     game: { level, levelsCleared: 0, shotsFired: 0, piratesSunk: 0 },
-    player: { cash: 0, owned: { ball: true }, equippedId: 'ball' },
+    player: { cash: 0, owned: { ball: true }, equippedId: 'ball', ammo: {} },
   };
 }
 
@@ -103,11 +103,37 @@ describe('GameScreen', () => {
     expect(store.getState().game.piratesSunk).toBe(1);
   });
 
+  it('onUseAmmo dispatches useAmmo to the store', () => {
+    const { store } = renderWithProviders(<GameScreen />, {
+      preloadedState: {
+        game: { level: 1, levelsCleared: 0, shotsFired: 0, piratesSunk: 0 },
+        player: { cash: 0, owned: { ball: true, grenade: true }, equippedId: 'grenade', ammo: { grenade: 3 } },
+      },
+    });
+    act(() => { capturedOpts.onUseAmmo('grenade'); });
+    expect(store.getState().player.ammo.grenade).toBe(2);
+  });
+
+  it('getAmmo returns current ammo for a weapon', () => {
+    renderWithProviders(<GameScreen />, {
+      preloadedState: {
+        game: { level: 1, levelsCleared: 0, shotsFired: 0, piratesSunk: 0 },
+        player: { cash: 0, owned: { ball: true, rocket: true }, equippedId: 'rocket', ammo: { rocket: 2 } },
+      },
+    });
+    expect(capturedOpts.getAmmo('rocket')).toBe(2);
+  });
+
+  it('getAmmo returns 0 for a weapon with no ammo tracked', () => {
+    renderWithProviders(<GameScreen />, { preloadedState: defaultState() });
+    expect(capturedOpts.getAmmo('grenade')).toBe(0);
+  });
+
   it('keyboard shortcut "1" equips the ball', () => {
     const { store } = renderWithProviders(<GameScreen />, {
       preloadedState: {
         game: { level: 1, levelsCleared: 0, shotsFired: 0, piratesSunk: 0 },
-        player: { cash: 0, owned: { ball: true, baseball: true }, equippedId: 'baseball' },
+        player: { cash: 0, owned: { ball: true, baseball: true }, equippedId: 'baseball', ammo: {} },
       },
     });
     fireEvent.keyDown(window, { key: '1' });
@@ -118,7 +144,7 @@ describe('GameScreen', () => {
     const { store } = renderWithProviders(<GameScreen />, {
       preloadedState: {
         game: { level: 1, levelsCleared: 0, shotsFired: 0, piratesSunk: 0 },
-        player: { cash: 0, owned: { ball: true, baseball: true }, equippedId: 'ball' },
+        player: { cash: 0, owned: { ball: true, baseball: true }, equippedId: 'ball', ammo: {} },
       },
     });
     fireEvent.keyDown(window, { key: '2' });

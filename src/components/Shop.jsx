@@ -1,8 +1,38 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { WEAPONS } from "../game/constants.js";
-import { buyWeapon, equipWeapon } from "../store/playerSlice.js";
+import { WEAPONS, AMMO } from "../game/constants.js";
+import { buyWeapon, equipWeapon, buyAmmo } from "../store/playerSlice.js";
 import { initAudio, sfx } from "../game/sound.js";
+
+function AmmoPanel({ weapon }) {
+  const dispatch = useDispatch();
+  const cash = useSelector(s => s.player.cash);
+  const owned = useSelector(s => !!s.player.owned[weapon.id]);
+  const ammoCount = useSelector(s => s.player.ammo[weapon.id] ?? 0);
+  const cfg = AMMO[weapon.id];
+
+  if (!owned) return null;
+
+  const canAfford = cash >= cfg.refillPrice;
+
+  const handleBuy = () => {
+    initAudio();
+    if (canAfford) { dispatch(buyAmmo(weapon.id)); sfx.buy(); }
+    else sfx.deny();
+  };
+
+  return (
+    <div className="ammo-panel">
+      <span className={`ammo-count${ammoCount === 0 ? " ammo-empty" : ""}`}>{ammoCount} ammo left</span>
+      <button
+        className={`ammo-btn ${canAfford ? "affordable" : "expensive"}`}
+        onClick={handleBuy}
+      >
+        +{cfg.refillQty} for ${cfg.refillPrice}
+      </button>
+    </div>
+  );
+}
 
 function WeaponCard({ weapon }) {
   const dispatch = useDispatch();
@@ -57,7 +87,12 @@ export default function Shop() {
         <span className="shop-cash">YOUR CASH: ${cash}</span>
       </header>
       <div className="shop-grid">
-        {WEAPONS.map(w => <WeaponCard key={w.id} weapon={w} />)}
+        {WEAPONS.map(w => (
+          <div key={w.id} className="weapon-slot">
+            <WeaponCard weapon={w} />
+            {AMMO[w.id] && <AmmoPanel weapon={w} />}
+          </div>
+        ))}
       </div>
       <button className="btn btn-big" onClick={() => navigate("/play")}>
         START LEVEL {level} ➤

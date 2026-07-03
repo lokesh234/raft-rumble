@@ -1,10 +1,11 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { WEAPONS } from "../game/constants.js";
+import { WEAPONS, AMMO } from "../game/constants.js";
 
 const initialState = {
   cash: 0,
   owned: { ball: true },
   equippedId: "ball",
+  ammo: {},
 };
 
 const playerSlice = createSlice({
@@ -20,6 +21,18 @@ const playerSlice = createSlice({
       state.cash -= weapon.price;
       state.owned[weapon.id] = true;
       state.equippedId = weapon.id;
+      if (AMMO[weapon.id]) state.ammo[weapon.id] = AMMO[weapon.id].initial;
+    },
+    buyAmmo(state, action) {
+      const id = action.payload;
+      const cfg = AMMO[id];
+      if (!cfg || !state.owned[id] || state.cash < cfg.refillPrice) return;
+      state.cash -= cfg.refillPrice;
+      state.ammo[id] = (state.ammo[id] ?? 0) + cfg.refillQty;
+    },
+    useAmmo(state, action) {
+      const id = action.payload;
+      if (state.ammo[id] > 0) state.ammo[id]--;
     },
     equipWeapon(state, action) {
       if (state.owned[action.payload]) state.equippedId = action.payload;
@@ -30,5 +43,5 @@ const playerSlice = createSlice({
   },
 });
 
-export const { addCash, buyWeapon, equipWeapon, resetPlayer } = playerSlice.actions;
+export const { addCash, buyWeapon, buyAmmo, useAmmo, equipWeapon, resetPlayer } = playerSlice.actions;
 export default playerSlice.reducer;

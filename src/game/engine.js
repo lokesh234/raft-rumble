@@ -1,4 +1,4 @@
-import { W, H, WATER, GRAV, WEAPONS, LEVELS, ASSET_SOURCES, CASH_PER_HIT, CASH_PER_KO } from "./constants.js";
+import { W, H, WATER, GRAV, WEAPONS, LEVELS, ASSET_SOURCES, CASH_PER_HIT, CASH_PER_KO, AMMO } from "./constants.js";
 import { sfx, initAudio } from "./sound.js";
 
 let imagesPromise = null;
@@ -34,7 +34,7 @@ function loadImages() {
  */
 export function createEngine(canvas, opts) {
   const cx = canvas.getContext("2d");
-  const { level, getWeaponId, onCash, onShot, onPirateSunk, onLevelWin, onGameOver } = opts;
+  const { level, getWeaponId, getAmmo, onCash, onShot, onPirateSunk, onLevelWin, onGameOver, onUseAmmo } = opts;
 
   let IMG = null;
   let destroyed = false;
@@ -63,9 +63,11 @@ export function createEngine(canvas, opts) {
   ];
 
   function weaponOf(team) {
-    return team === "player"
-      ? WEAPONS.find(w => w.id === getWeaponId()) || WEAPONS[0]
-      : WEAPONS[0];
+    if (team !== "player") return WEAPONS[0];
+    const id = getWeaponId();
+    const weapon = WEAPONS.find(w => w.id === id) || WEAPONS[0];
+    if (AMMO[id] && (getAmmo?.(id) ?? 0) <= 0) return WEAPONS[0];
+    return weapon;
   }
 
   function makeUnit(team, raft, baseOff, hp) {
@@ -146,7 +148,10 @@ export function createEngine(canvas, opts) {
     const w = weaponOf(u.team);
     ball = { x: m.x, y: m.y, vx, vy, team: u.team, spin: 0, w };
     state = "fly";
-    if (u.team === "player") onShot?.();
+    if (u.team === "player") {
+      onShot?.();
+      if (AMMO[w.id]) onUseAmmo?.(w.id);
+    }
     sfx.fire();
   }
 

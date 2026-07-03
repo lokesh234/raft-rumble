@@ -8,6 +8,12 @@ export const CASH_PER_HIT = 75;
 export const CASH_PER_KO = 400;
 export const LEVEL_BONUS = 1000;
 
+// weapons with finite ammo: how many shots on purchase, refill pack size, refill price
+export const AMMO = {
+  grenade: { initial: 3, refillQty: 3, refillPrice: 350 },
+  rocket:  { initial: 2, refillQty: 2, refillPrice: 550 },
+};
+
 export const ASSET_SOURCES = {
   player: "/assets/player.svg",
   enemy: "/assets/enemy.svg",
