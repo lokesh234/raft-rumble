@@ -64,7 +64,7 @@ function WeaponCard({ weapon }) {
       onClick={onClick}
       aria-pressed={equipped}
     >
-      <div className="card-icon"><img src={`/assets/${weapon.img}.svg`} alt={weapon.name} /></div>
+      <div className="card-icon"><img src={`${import.meta.env.BASE_URL}assets/${weapon.img}.svg`} alt={weapon.name} /></div>
       <h3>{weapon.name}</h3>
       <div className="card-stat dmg">DMG&nbsp;&nbsp;{"■".repeat(Math.round(weapon.dmg * 2))}</div>
       <div className="card-stat blast">BLAST&nbsp;&nbsp;{weapon.blast}</div>

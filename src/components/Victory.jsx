@@ -17,7 +17,7 @@ export default function Victory() {
 
   return (
     <div className="screen victory-screen">
-      <img src="/assets/player.svg" alt="Victorious baby" className="victory-hero bob" />
+      <img src={`${import.meta.env.BASE_URL}assets/player.svg`} alt="Victorious baby" className="victory-hero bob" />
       <h1 className="title-logo">YOU WIN!</h1>
       <p className="title-sub">The seas are yours.</p>
       <div className="victory-stats">

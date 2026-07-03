@@ -19,9 +19,9 @@ export default function TitleScreen() {
   return (
     <div className="screen title-screen">
       <div className="title-cast">
-        <img src="/assets/player.svg" alt="Baby hero" className="bob" />
-        <img src="/assets/ball.svg" alt="Tennis ball" className="title-ball spin" />
-        <img src="/assets/enemy.svg" alt="Pirate" className="bob delay" />
+        <img src={`${import.meta.env.BASE_URL}assets/player.svg`} alt="Baby hero" className="bob" />
+        <img src={`${import.meta.env.BASE_URL}assets/ball.svg`} alt="Tennis ball" className="title-ball spin" />
+        <img src={`${import.meta.env.BASE_URL}assets/enemy.svg`} alt="Pirate" className="bob delay" />
       </div>
       <h1 className="title-logo">RAFT RUMBLE</h1>
       <p className="title-sub">Pirates want your raft. Bean them with tennis balls.</p>

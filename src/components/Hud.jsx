@@ -17,7 +17,7 @@ export default function Hud() {
       <div className="hud-level">LEVEL {level} / {MAX_LEVEL}</div>
       <div className="hud-cash">${cash}</div>
       <div className="hud-weapon">
-        <img src={`/assets/${displayWeapon.img}.svg`} alt="" />
+        <img src={`${import.meta.env.BASE_URL}assets/${displayWeapon.img}.svg`} alt="" />
         <span>{displayWeapon.name.toUpperCase()} <em>(keys 1-4)</em></span>
         {ammoCfg && !outOfAmmo && (
           <span className="hud-ammo">{ammo[weapon.id]} ammo</span>
